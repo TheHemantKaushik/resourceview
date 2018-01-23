@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <string name="app_name">recourceview</string>
-    <string name="error_message">Something went wrong, please try again!</string>
-    <string name="please_wait">Please wait!</string>
-    <string name="retry_button">Retry</string>
-</resources>
