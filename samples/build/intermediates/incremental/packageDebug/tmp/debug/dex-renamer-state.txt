@@ -1,0 +1,4 @@
+#Tue Jan 23 23:43:27 IST 2018
+base.0=/home/hemant/Work/projects/androids/ResourceView/samples/build/intermediates/transforms/dexMerger/debug/0
+path.0=classes.dex
+renamed.0=classes.dex
