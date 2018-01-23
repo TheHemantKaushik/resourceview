@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">ResourceView</string>
+    <string name="error_message">Error in loading data</string>
+    <string name="show_loader_button">Show\nLoader</string>
+    <string name="show_contents_button">Show\nContents</string>
+    <string name="show_error_button">Show\nError</string>
+</resources>
