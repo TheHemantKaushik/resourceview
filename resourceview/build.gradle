@@ -1,4 +1,29 @@
 apply plugin: 'com.android.library'
+apply plugin: 'com.jfrog.bintray'
+
+ext {
+    bintrayRepo = 'resourceview'
+    bintrayName = 'resourceview'
+
+    publishedGroupId = 'com.thehemantkaushik'
+    libraryName = 'resourceview'
+    artifact = 'resourceview'
+
+    libraryDescription = 'A view to handle resource states e.g. loading, data or error.'
+
+    siteUrl = 'https://github.com/TheHemantKaushik/resourceview'
+    gitUrl = 'https://github.com/TheHemantKaushik/resourceview.git'
+
+    libraryVersion = '1.0.0-alpha1'
+
+    developerId = 'thehemantkaushik'
+    developerName = 'Hemant Kaushik'
+    developerEmail = 'thehemantkaushik@gmail.com'
+
+    licenseName = 'The Apache Software License, Version 2.0'
+    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+    allLicenses = ["Apache-2.0"]
+}
 
 android {
     compileSdkVersion 27
@@ -28,9 +53,13 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     implementation 'com.android.support:appcompat-v7:27.0.2'
+    implementation 'com.android.support:support-annotations:27.0.2'
 
     testImplementation 'junit:junit:4.12'
 
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
 }
+
+apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/installv1.gradle'
+apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/bintrayv1.gradle'
