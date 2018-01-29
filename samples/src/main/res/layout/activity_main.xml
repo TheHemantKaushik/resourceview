@@ -6,7 +6,7 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <com.thehemantkaushik.resourceview.ResourceView
+    <com.thehemantkaushik.ResourceView
         android:id="@+id/resourceView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -18,7 +18,7 @@
             android:gravity="center"
             android:text="Main View" />
 
-    </com.thehemantkaushik.resourceview.ResourceView>
+    </com.thehemantkaushik.ResourceView>
 
     <LinearLayout
         style="?android:buttonBarStyle"

@@ -48,6 +48,7 @@ bintray {
         publish = true
         publicDownloadNumbers = true
         version {
+            vcsTag = vcsTag
             desc = libraryDescription
             gpg {
                 sign = true //Determines whether to GPG sign the files. The default is false

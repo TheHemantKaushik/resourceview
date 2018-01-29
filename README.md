@@ -6,7 +6,15 @@ e.g. loading, data or error. Here is some simple steps to use ResourceView:
 
 **1. Add dependency:**
 
-`compile 'com.thehemantkaushik.resourceview:resourceview:1.0.0-alpha2'`
+// in project's build.gradle<br/>
+`allprojects {`<br/>
+`    repositories {`<br/>
+`        jcenter({ url  "https://dl.bintray.com/thehemantkaushik/resourceview" })`<br/>
+`    }`<br/>
+`}`
+
+// in app's build.gradle<br/>
+`compile 'com.thehemantkaushik:resourceview:1.0.0-alpha1'`
 
 <br/>
 

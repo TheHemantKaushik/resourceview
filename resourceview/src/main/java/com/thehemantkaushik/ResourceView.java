@@ -1,4 +1,4 @@
-package com.thehemantkaushik.resourceview;
+package com.thehemantkaushik;
 
 import android.annotation.TargetApi;
 import android.content.Context;

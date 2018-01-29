@@ -1,4 +1,4 @@
-package com.thehemantkaushik.resourceview;
+package com.thehemantkaushik;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

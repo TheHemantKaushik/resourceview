@@ -1,14 +1,11 @@
 apply plugin: 'com.android.library'
 apply plugin: 'com.jfrog.bintray'
 
-def LIB_VERSION_CODE = 1
-def LIB_VERSION_NAME = '1.0.0-alpha2'
-
 ext {
     bintrayRepo = 'resourceview'
-    bintrayName = 'com.thehemantkaushik.resourceview:resourceview'
+    bintrayName = 'com.thehemantkaushik:resourceview'
 
-    publishedGroupId = 'com.thehemantkaushik.resourceview'
+    publishedGroupId = 'com.thehemantkaushik'
     libraryName = 'resourceview'
     artifact = 'resourceview'
 
@@ -17,7 +14,8 @@ ext {
     siteUrl = 'https://github.com/TheHemantKaushik/resourceview'
     gitUrl = 'https://github.com/TheHemantKaushik/resourceview.git'
 
-    libraryVersion = LIB_VERSION_NAME
+    libraryVersion = '1.0.0-alpha1'
+    vcsTag = 'v1.0.0-alpha1'
 
     developerId = 'thehemantkaushik'
     developerName = 'Hemant Kaushik'
@@ -34,8 +32,8 @@ android {
     defaultConfig {
         minSdkVersion 14
         targetSdkVersion 27
-        versionCode LIB_VERSION_CODE
-        versionName LIB_VERSION_NAME
+        versionCode 1
+        versionName libraryVersion
         vectorDrawables.useSupportLibrary = true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
