@@ -1,9 +1,10 @@
-package com.thehemantkaushik.samples;
+package com.thehemantkaushik.resourceview.samples;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
-import com.thehemantkaushik.ResourceView;
+import com.thehemantkaushik.resourceview.ResourceView;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -18,10 +19,12 @@ public class MainActivity extends AppCompatActivity {
             // show loader
             resourceView.showLoadingLayout(R.string.please_wait);
         });
+
         findViewById(R.id.showError).setOnClickListener(v -> {
             // show error
             resourceView.showErrorLayout(R.drawable.ic_error_outline_white_24px, "Some error occurred!");
         });
+
         findViewById(R.id.showContents).setOnClickListener(v -> {
             // show contents
             resourceView.showContents();

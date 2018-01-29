@@ -1,4 +1,4 @@
-package com.thehemantkaushik;
+package com.thehemantkaushik.resourceview.samples;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.thehemantkaushik.recourceview.test", appContext.getPackageName());
+        assertEquals("com.thehemantkaushik.resourceview.samples.resourceview", appContext.getPackageName());
     }
 }

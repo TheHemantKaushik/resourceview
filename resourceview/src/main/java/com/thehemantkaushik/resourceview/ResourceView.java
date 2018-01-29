@@ -1,4 +1,4 @@
-package com.thehemantkaushik;
+package com.thehemantkaushik.resourceview;
 
 import android.annotation.TargetApi;
 import android.content.Context;
@@ -8,6 +8,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
 import android.support.v4.content.res.ResourcesCompat;
+import android.support.v7.app.AppCompatDelegate;
 import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.AppCompatTextView;
@@ -32,6 +33,7 @@ public class ResourceView extends FrameLayout {
     private View loaderLayout;
     private ProgressBar loaderProgressBar;
     private AppCompatTextView loaderMessageTextView;
+
     private boolean contentsHidden = false;
     private int[] childrenVisibility;
 
@@ -57,6 +59,9 @@ public class ResourceView extends FrameLayout {
     }
 
     private void init(Context context) {
+        // to set vector drawables programmatically in pre-lollipop devices.
+        AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
+
         LayoutInflater layoutInflater = LayoutInflater.from(context);
 
         loaderLayout = layoutInflater.inflate(R.layout.loader_layout, this, false);
@@ -72,64 +77,149 @@ public class ResourceView extends FrameLayout {
         errorLayout.setVisibility(GONE);
     }
 
+    /**
+     * Show loading without any message
+     */
+    public void showLoadingLayout() {
+        showLoadingLayout(null);
+    }
+
+    /**
+     * Show loading with a message
+     *
+     * @param loaderMessageRes pass message string resource
+     */
+    public void showLoadingLayout(@StringRes int loaderMessageRes) {
+        if (isValidStringRes(loaderMessageRes)) {
+            showLoadingLayout(getContext().getString(loaderMessageRes));
+        } else {
+            showLoadingLayout(null);
+        }
+    }
+
+    /**
+     * Show loading with a message
+     *
+     * @param loaderMessage pass message
+     */
+    public void showLoadingLayout(@Nullable String loaderMessage) {
+
+        hideContents();
+        removeView(loaderLayout);
+        removeView(errorLayout);
+
+        addView(loaderLayout);
+        loaderLayout.setVisibility(VISIBLE);
+
+        if (loaderMessage != null) {
+            loaderMessageTextView.setText(loaderMessage);
+        } else {
+            loaderMessageTextView.setVisibility(GONE);
+        }
+    }
+
+    /**
+     * Show error layout with a message
+     *
+     * @param errorMessageRes pass error message resource
+     */
     public void showErrorLayout(@StringRes int errorMessageRes) {
         showErrorLayout(0, errorMessageRes, 0, null);
     }
 
-    public void showErrorLayout(@NonNull String errorMessage) {
-        showErrorLayout(0, errorMessage, null, null);
+    /**
+     * Show error layout with a message
+     *
+     * @param errorMessage pass error message
+     */
+    public void showErrorLayout(@Nullable String errorMessage) {
+        showErrorLayout(0, errorMessage, 0, null);
     }
 
+    /**
+     * Show error layout with an image and message
+     *
+     * @param errorImageRes   drawable resource to show image
+     * @param errorMessageRes pass error message resource
+     */
     public void showErrorLayout(@DrawableRes int errorImageRes,
                                 @StringRes int errorMessageRes) {
         showErrorLayout(errorImageRes, errorMessageRes, 0, null);
     }
 
+    /**
+     * Show error layout with an image and message
+     *
+     * @param errorImageRes drawable resource to show image
+     * @param errorMessage  pass error message
+     */
     public void showErrorLayout(@DrawableRes int errorImageRes,
                                 @Nullable String errorMessage) {
-        showErrorLayout(errorImageRes, errorMessage, null, null);
+        showErrorLayout(errorImageRes, errorMessage, 0, null);
     }
 
+    /**
+     * Show error layout with a message and button
+     *
+     * @param errorMessageRes          pass error message string resource
+     * @param errorButtonTextRes       pass button name string resource
+     * @param errorButtonClickListener pass a listener to listen button click
+     */
     public void showErrorLayout(@StringRes int errorMessageRes,
                                 @StringRes int errorButtonTextRes,
                                 @Nullable View.OnClickListener errorButtonClickListener) {
 
         String errorMessage = isValidStringRes(errorMessageRes) ? getContext().getString(errorMessageRes) : null;
-        String errorButtonText = isValidStringRes(errorButtonTextRes) ? getContext().getString(errorButtonTextRes) : null;
 
-        showErrorLayout(0, errorMessage, errorButtonText, errorButtonClickListener);
+        showErrorLayout(0, errorMessage, errorButtonTextRes, errorButtonClickListener);
     }
 
+    /**
+     * Show error layout with a message and button
+     *
+     * @param errorMessage             pass error message
+     * @param errorButtonTextRes       pass button name string resource
+     * @param errorButtonClickListener pass a listener to listen button click
+     */
     public void showErrorLayout(@Nullable String errorMessage,
-                                @Nullable String errorButtonText,
+                                @StringRes int errorButtonTextRes,
                                 @Nullable View.OnClickListener errorButtonClickListener) {
 
-        showErrorLayout(0, errorMessage, errorButtonText, errorButtonClickListener);
+        showErrorLayout(0, errorMessage, errorButtonTextRes, errorButtonClickListener);
     }
 
+    /**
+     * Show error layout with a message and button
+     *
+     * @param errorImageRes            drawable resource to show image
+     * @param errorMessageRes          pass error message string resource
+     * @param errorButtonTextRes       pass button name string resource
+     * @param errorButtonClickListener pass a listener to listen button click
+     */
     public void showErrorLayout(@DrawableRes int errorImageRes,
                                 @StringRes int errorMessageRes,
                                 @StringRes int errorButtonTextRes,
                                 @Nullable View.OnClickListener errorButtonClickListener) {
 
         String errorMessage = isValidStringRes(errorMessageRes) ? getContext().getString(errorMessageRes) : null;
-        String errorButtonText = isValidStringRes(errorButtonTextRes) ? getContext().getString(errorButtonTextRes) : null;
 
-        showErrorLayout(errorImageRes, errorMessage, errorButtonText, errorButtonClickListener);
+        showErrorLayout(errorImageRes, errorMessage, errorButtonTextRes, errorButtonClickListener);
     }
 
-    private boolean isValidDrawableRes(@DrawableRes int errorButtonTextRes) {
-        return getResources().getIdentifier(String.valueOf(errorButtonTextRes), "drawable", getContext().getPackageName()) != 0;
-    }
-
-    private boolean isValidStringRes(@StringRes int errorButtonTextRes) {
-        return getResources().getIdentifier(String.valueOf(errorButtonTextRes), "string", getContext().getPackageName()) != 0;
-    }
-
+    /**
+     * Show error layout with a message and button
+     *
+     * @param errorImageRes            drawable resource to show image
+     * @param errorMessage             pass error message string
+     * @param errorButtonTextRes       pass button name string resource
+     * @param errorButtonClickListener pass a listener to listen button click
+     */
     public void showErrorLayout(@DrawableRes int errorImageRes,
                                 @Nullable String errorMessage,
-                                @Nullable String errorButtonText,
+                                @StringRes int errorButtonTextRes,
                                 @Nullable View.OnClickListener errorButtonClickListener) {
+
+        String errorButtonText = isValidStringRes(errorButtonTextRes) ? getContext().getString(errorButtonTextRes) : null;
 
         hideContents();
         removeView(loaderLayout);
@@ -159,31 +249,20 @@ public class ResourceView extends FrameLayout {
         errorButton.setOnClickListener(errorButtonClickListener);
     }
 
-    public void showLoadingLayout() {
-        showLoadingLayout(null);
-    }
-
-    public void showLoadingLayout(@StringRes int loaderMessage) {
-        if (isValidStringRes(loaderMessage)) {
-            showLoadingLayout(getContext().getString(loaderMessage));
-        } else {
-            showLoadingLayout(null);
+    /**
+     * Show actual contents
+     */
+    public void showContents() {
+        if (!contentsHidden) {
+            return;
         }
-    }
+        contentsHidden = false;
 
-    public void showLoadingLayout(@Nullable String loaderMessage) {
-
-        hideContents();
         removeView(loaderLayout);
         removeView(errorLayout);
 
-        addView(loaderLayout);
-        loaderLayout.setVisibility(VISIBLE);
-
-        if (loaderMessage != null) {
-            loaderMessageTextView.setText(loaderMessage);
-        } else {
-            loaderMessageTextView.setVisibility(GONE);
+        for (int i = 0; i < childrenVisibility.length; i++) {
+            getChildAt(i).setVisibility(childrenVisibility[i]);
         }
     }
 
@@ -201,17 +280,12 @@ public class ResourceView extends FrameLayout {
         }
     }
 
-    public void showContents() {
-        if (!contentsHidden) {
-            return;
-        }
-        contentsHidden = false;
-
-        removeView(loaderLayout);
-        removeView(errorLayout);
-
-        for (int i = 0; i < childrenVisibility.length; i++) {
-            getChildAt(i).setVisibility(childrenVisibility[i]);
-        }
+    private boolean isValidDrawableRes(@DrawableRes int errorButtonTextRes) {
+        return getResources().getIdentifier(String.valueOf(errorButtonTextRes), "drawable", getContext().getPackageName()) != 0;
     }
+
+    private boolean isValidStringRes(@StringRes int errorButtonTextRes) {
+        return getResources().getIdentifier(String.valueOf(errorButtonTextRes), "string", getContext().getPackageName()) != 0;
+    }
+
 }
