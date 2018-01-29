@@ -1,10 +1,12 @@
+[ ![Download](https://api.bintray.com/packages/thehemantkaushik/resourceview/com.thehemantkaushik%3Aresourceview/images/download.svg) ](https://bintray.com/thehemantkaushik/resourceview/com.thehemantkaushik%3Aresourceview/_latestVersion)
+
 # ResourceView
 ResourceView is a very useful library to handle resource states
 e.g. loading, data or error. Here is some simple steps to use ResourceView:
 
 <br/>
 
-**1. Add dependency:**
+**1. Configure:**
 
 // in project's build.gradle<br/>
 `allprojects {`<br/>
