@@ -1,10 +1,12 @@
+[ ![Download](https://api.bintray.com/packages/thehemantkaushik/resourceview/com.thehemantkaushik%3Aresourceview/images/download.svg) ](https://bintray.com/thehemantkaushik/resourceview/com.thehemantkaushik%3Aresourceview/_latestVersion)
+
 # ResourceView
 ResourceView is a very useful library to handle resource states
 e.g. loading, data or error. Here is some simple steps to use ResourceView:
 
 <br/>
 
-**1. Add dependency:**
+**1. Configure:**
 
 // in project's build.gradle<br/>
 `allprojects {`<br/>
@@ -20,7 +22,7 @@ e.g. loading, data or error. Here is some simple steps to use ResourceView:
 
 **2. Find view:**
 
-// find view<br/>
+// find/bind view<br/>
 `ResourceView resourceView;` 
 
 <br/>
@@ -44,13 +46,19 @@ e.g. loading, data or error. Here is some simple steps to use ResourceView:
 `resourceView.showErrorLayout(@StringRes int errorMessageRes);`
 
 // show error layout by passing an image resource and message resource<br/>
-`resourceView.showErrorLayout(@DrawableRes int errorImageRes, @StringRes int errorMessageRes);`
+`resourceView.showErrorLayout(@DrawableRes int errorImageRes, 
+                              @StringRes int errorMessageRes);`
 
 // show error layout by passing error message string resource, button name string resource and a listener to listen button click <br/>
-`resourceView.showErrorLayout(@StringRes int errorMessageRes, @StringRes int errorButtonTextRes, @Nullable View.OnClickListener errorButtonClickListener);`
+`resourceView.showErrorLayout(@StringRes int errorMessageRes, 
+                              @StringRes int errorButtonTextRes, 
+                              @Nullable View.OnClickListener errorButtonClickListener);`
 
 // show error layout by passing drawable resource, error message string resource, button name string resource and a listener to listen button click <br/>
-`resourceView.showErrorLayout(@DrawableRes int errorImageRes, @StringRes int errorMessageRes, @StringRes int errorButtonTextRes, @Nullable View.OnClickListener errorButtonClickListener);`
+`resourceView.showErrorLayout(@DrawableRes int errorImageRes, 
+                              @StringRes int errorMessageRes, 
+                              @StringRes int errorButtonTextRes, 
+                              @Nullable View.OnClickListener errorButtonClickListener);`
 
 <br/>
 
