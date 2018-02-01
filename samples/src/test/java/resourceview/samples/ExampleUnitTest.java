@@ -1,4 +1,4 @@
-package com.thehemantkaushik;
+package resourceview.samples;
 
 import org.junit.Test;
 

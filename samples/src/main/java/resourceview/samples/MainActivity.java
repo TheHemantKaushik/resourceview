@@ -1,9 +1,9 @@
-package com.thehemantkaushik.resourceview.samples;
+package resourceview.samples;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
-import com.thehemantkaushik.ResourceView;
+import resourceview.ResourceView;
 
 
 public class MainActivity extends AppCompatActivity {

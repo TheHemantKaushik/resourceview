@@ -1,1 +1,1 @@
-include ':samples', ':resourceview'
+include ':samples', ':resourceview', ':resourceview-bindings'

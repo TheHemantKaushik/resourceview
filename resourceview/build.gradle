@@ -62,5 +62,4 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
 }
 
-apply from: '../install_config.gradle'
-apply from: '../bintray_config.gradle'
+apply from: '../deploy.gradle'
