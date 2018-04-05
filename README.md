@@ -16,7 +16,7 @@ e.g. loading, data or error. Here is some simple steps to use ResourceView:
 `}`
 
 // in app's build.gradle<br/>
-`compile 'com.thehemantkaushik:resourceview:1.0.0-alpha1'`
+`compile 'com.thehemantkaushik:resourceview:1.0.0-alpha2'`
 
 <br/>
 
@@ -38,27 +38,33 @@ e.g. loading, data or error. Here is some simple steps to use ResourceView:
 // show loader with message by passing string<br/>
 `resourceView.showLoadingLayout(String loaderMessage);`
 
+// want to show custom layout for loading<br/>
+`resourceView.showLoadingView(@LayoutRes int layoutRes);`
+
+// want to show custom view for loading<br/>
+`resourceView.showLoadingView(View view);`
+
 <br/>
 
 **4. Show Error:**
 
-// show error layout by passing string resource id<br/>
-`resourceView.showErrorLayout(@StringRes int errorMessageRes);`
+// show error message<br/>
+`resourceView.showErrorLayout(String message);`
 
-// show error layout by passing an image resource and message resource<br/>
-`resourceView.showErrorLayout(@DrawableRes int errorImageRes, 
-                              @StringRes int errorMessageRes);`
+// show error image and message<br/>
+`resourceView.showErrorLayout(int imageRes, String message);`
 
-// show error layout by passing error message string resource, button name string resource and a listener to listen button click <br/>
-`resourceView.showErrorLayout(@StringRes int errorMessageRes, 
-                              @StringRes int errorButtonTextRes, 
-                              @Nullable View.OnClickListener errorButtonClickListener);`
+// show error message and action<br/>
+`resourceView.showErrorLayout(String message, String actionButtonText, Runnable actionButtonCallback);`
 
-// show error layout by passing drawable resource, error message string resource, button name string resource and a listener to listen button click <br/>
-`resourceView.showErrorLayout(@DrawableRes int errorImageRes, 
-                              @StringRes int errorMessageRes, 
-                              @StringRes int errorButtonTextRes, 
-                              @Nullable View.OnClickListener errorButtonClickListener);`
+// show error image, message and action<br/>
+`resourceView.showErrorLayout(int imageRes, String message, String actionButtonText, Runnable actionButtonCallback);`
+
+// show your own error layout by passing its resource id<br/>
+`resourceView.showErrorView(@LayoutRes int layout);`
+
+// show your own error view<br/>
+`resourceView.showErrorView(View view);`
 
 <br/>
 

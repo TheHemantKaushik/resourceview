@@ -1,4 +1,30 @@
 apply plugin: 'com.android.library'
+apply plugin: 'com.jfrog.bintray'
+
+ext {
+    bintrayRepo = 'resourceview'
+    bintrayName = 'com.thehemantkaushik:resourceview-bindings'
+
+    publishedGroupId = 'com.thehemantkaushik'
+    libraryName = 'resourceview-bindings'
+    artifact = 'resourceview-bindings'
+
+    libraryDescription = 'Data bindings support for ResourceView'
+
+    siteUrl = 'https://github.com/TheHemantKaushik/resourceview'
+    gitUrl = 'https://github.com/TheHemantKaushik/resourceview.git'
+
+    libraryVersion = '1.0.0-alpha1'
+    vcsTag = 'v1.0.0-alpha1'
+
+    developerId = 'thehemantkaushik'
+    developerName = 'Hemant Kaushik'
+    developerEmail = 'thehemantkaushik@gmail.com'
+
+    licenseName = 'The Apache Software License, Version 2.0'
+    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+    allLicenses = ["Apache-2.0"]
+}
 
 android {
     compileSdkVersion 27
@@ -30,12 +56,19 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
+    // LOCAL PROJECTS
     implementation project(':resourceview')
 
-    implementation 'com.android.support:appcompat-v7:27.0.2'
+    // ANDROID SUPPORT LIBS
+    implementation libs.support.appCompat
+    implementation libs.support.supportAnnotations
 
-    testImplementation 'junit:junit:4.12'
+    // UNIT TESTS
+    testImplementation libs.test.junit
 
-    androidTestImplementation 'com.android.support.test:runner:1.0.1'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+    // ANDROID TESTS
+    androidTestImplementation libs.test.androidSupportTestRunner
+    androidTestImplementation libs.test.espressoCore
 }
+
+apply from: '../deploy.gradle'

@@ -2,6 +2,13 @@ apply plugin: 'com.android.library'
 apply plugin: 'com.jfrog.bintray'
 
 ext {
+    versionMajor = 1
+    versionMinor = 0
+    buildNum = 0
+    patch = 'alpha2'
+}
+
+ext {
     bintrayRepo = 'resourceview'
     bintrayName = 'com.thehemantkaushik:resourceview'
 
@@ -14,8 +21,8 @@ ext {
     siteUrl = 'https://github.com/TheHemantKaushik/resourceview'
     gitUrl = 'https://github.com/TheHemantKaushik/resourceview.git'
 
-    libraryVersion = '1.0.0-alpha1'
-    vcsTag = 'v1.0.0-alpha1'
+    libraryVersion = "" + versionMajor + "." + versionMinor + "." + buildNum + "-" + patch
+    vcsTag = "v" + versionMajor + "." + versionMinor + "." + buildNum + "-" + patch
 
     developerId = 'thehemantkaushik'
     developerName = 'Hemant Kaushik'
@@ -27,12 +34,12 @@ ext {
 }
 
 android {
-    compileSdkVersion 27
+    compileSdkVersion versions.targetSdk
 
     defaultConfig {
-        minSdkVersion 14
-        targetSdkVersion 27
-        versionCode 1
+        minSdkVersion versions.minSdk
+        targetSdkVersion versions.targetSdk
+        versionCode versionMajor * 1000000 + versionMinor * 1000 + buildNum
         versionName libraryVersion
         vectorDrawables.useSupportLibrary = true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -53,13 +60,16 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    implementation 'com.android.support:appcompat-v7:27.0.2'
-    implementation 'com.android.support:support-annotations:27.0.2'
+    // ANDROID SUPPORT LIBS
+    implementation libs.support.appCompat
+    implementation libs.support.supportAnnotations
 
-    testImplementation 'junit:junit:4.12'
+    // UNIT TESTS
+    testImplementation libs.test.junit
 
-    androidTestImplementation 'com.android.support.test:runner:1.0.1'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+    // ANDROID TESTS
+    androidTestImplementation libs.test.androidSupportTestRunner
+    androidTestImplementation libs.test.espressoCore
 }
 
 apply from: '../deploy.gradle'

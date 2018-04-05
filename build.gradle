@@ -1,18 +1,49 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
 buildscript {
+    ext.versions = [
+            minSdk                  : 14,
+            targetSdk               : 27,
+            supportLib              : '27.1.0',
+            constraintLayout: '1.0.2',
+            arch                    : '1.1.1',
+            gradle                  : '3.1.0',
+            gradleBintrayPlugin     : '1.8.0',
+            androidMavenGradlePlugin: '2.0',
+            junit                   : '4.12',
+            androidSupportTestRunner: '1.0.1',
+            espresso                : '3.0.1',
+    ]
+    ext.libs = [
+            support: [
+                    appCompat         : "com.android.support:appcompat-v7:${versions.supportLib}",
+                    supportAnnotations: "com.android.support:support-annotations:${versions.supportLib}",
+                    constraintLayout: 'com.android.support.constraint:constraint-layout:${versions.constraintLayout}',
+            ],
+            arch   : [
+                    lifecycleRuntime : "android.arch.lifecycle:runtime:${versions.arch}",
+                    lifecycleCompiler: "android.arch.lifecycle:compiler:${versions.arch}",
+            ],
+            gradle : [
+                    gradle                  : "com.android.tools.build:gradle:${versions.gradle}",
+                    gradleBintrayPlugin     : "com.jfrog.bintray.gradle:gradle-bintray-plugin:${versions.gradleBintrayPlugin}",
+                    androidMavenGradlePlugin: "com.github.dcendents:android-maven-gradle-plugin:${versions.androidMavenGradlePlugin}",
+            ],
+            test   : [
+                    junit                   : "junit:junit:${versions.junit}",
+                    androidSupportTestRunner: "com.android.support.test:runner:${versions.androidSupportTestRunner}",
+                    espressoCore            : "com.android.support.test.espresso:espresso-core:${versions.espresso}",
+            ]
+    ]
 
     repositories {
         google()
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.1.0-beta1'
-        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.0'
-        classpath 'com.github.dcendents:android-maven-gradle-plugin:2.0'
-
-        // NOTE: Do not place your application dependencies here; they belong
-        // in the individual module build.gradle files
+        classpath libs.gradle.gradle
+        classpath libs.gradle.gradleBintrayPlugin
+        classpath libs.gradle.androidMavenGradlePlugin
     }
 }
 
@@ -20,7 +51,6 @@ allprojects {
     repositories {
         google()
         jcenter()
-        jcenter({ url  "https://dl.bintray.com/thehemantkaushik/resourceview" })
     }
 }
 

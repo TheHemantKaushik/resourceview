@@ -4,27 +4,31 @@
     android:id="@+id/error_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background_light"
     android:gravity="center"
     android:orientation="vertical">
 
     <android.support.v7.widget.AppCompatImageView
         android:id="@+id/errorImageView"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="96dp"
+        android:layout_height="96dp"
+        android:visibility="gone"
         app:srcCompat="@drawable/ic_error_outline_white_24px" />
 
     <android.support.v7.widget.AppCompatTextView
         android:id="@+id/errorMessageTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:text="@string/error_message" />
+        android:layout_margin="8dp"
+        android:text="@string/error_message"
+        android:visibility="gone" />
 
     <android.support.v7.widget.AppCompatButton
         android:id="@+id/retryButton"
         style="@style/Widget.AppCompat.Button.Borderless"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/retry_button" />
+        android:text="@string/retry_button"
+        android:visibility="gone" />
 
 </LinearLayout>
